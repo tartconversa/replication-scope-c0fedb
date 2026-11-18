@@ -1,0 +1,7 @@
+site_id,steam_source,load_min,load_max,grid_kg,window
+S1,backpressure,0.52,0.86,0.44,W1
+S2,backpressure,0.54,0.87,0.48000000000000004,W1
+S3,backpressure,0.56,0.88,0.52,W2
+S4,external,0.58,0.89,0.56,W2
+S5,external,0.6,0.9,0.6000000000000001,W3
+S6,external,0.62,0.9099999999999999,0.64,W3

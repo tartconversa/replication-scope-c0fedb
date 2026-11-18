@@ -1,0 +1,503 @@
+{
+  "title": "绿色改造推广的可迁移证据与试点承诺",
+  "encoding": "UTF-8",
+  "delimiter": ",",
+  "missing": "",
+  "synthetic": true,
+  "tables": [
+    {
+      "name": "evidence",
+      "description": "示范试验观察，metric 与基准服务量明确，保留共同批。",
+      "columns": [
+        {
+          "name": "evidence_id",
+          "type": "string",
+          "description": "证据",
+          "nullable": true
+        },
+        {
+          "name": "evidence_group",
+          "type": "string",
+          "description": "共同试验批",
+          "nullable": true
+        },
+        {
+          "name": "technology",
+          "type": "string",
+          "description": "技术",
+          "nullable": true
+        },
+        {
+          "name": "steam_source",
+          "type": "string",
+          "description": "蒸汽来源",
+          "nullable": true
+        },
+        {
+          "name": "load",
+          "type": "number",
+          "description": "负荷",
+          "nullable": true
+        },
+        {
+          "name": "grid_kg",
+          "type": "number",
+          "description": "电力排放因子",
+          "nullable": true
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "description": "效果口径",
+          "nullable": true
+        },
+        {
+          "name": "effect",
+          "type": "number",
+          "description": "服务单位购能变化",
+          "nullable": true
+        },
+        {
+          "name": "stderr",
+          "type": "number",
+          "description": "不确定尺度",
+          "nullable": true
+        },
+        {
+          "name": "available_at",
+          "type": "datetime",
+          "description": "可知",
+          "nullable": true
+        },
+        {
+          "name": "design",
+          "type": "string",
+          "description": "示范研究安排",
+          "nullable": true
+        },
+        {
+          "name": "comparison",
+          "type": "string",
+          "description": "效果参照",
+          "nullable": true
+        },
+        {
+          "name": "service_definition",
+          "type": "string",
+          "description": "服务单位定义",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "evidence_id"
+      ],
+      "references": [],
+      "path": "data/evidence.csv",
+      "row_count": 36,
+      "sha256": "c2b5dc6e2003fd20f4923170f0927685e1658954fb6edaf2ddaf4e41f9ff8c45"
+    },
+    {
+      "name": "sites",
+      "description": "申请厂区工况及电力边界。",
+      "columns": [
+        {
+          "name": "site_id",
+          "type": "string",
+          "description": "厂区",
+          "nullable": true
+        },
+        {
+          "name": "steam_source",
+          "type": "string",
+          "description": "蒸汽来源",
+          "nullable": true
+        },
+        {
+          "name": "load_min",
+          "type": "number",
+          "description": "负荷下界",
+          "nullable": true
+        },
+        {
+          "name": "load_max",
+          "type": "number",
+          "description": "负荷上界",
+          "nullable": true
+        },
+        {
+          "name": "grid_kg",
+          "type": "number",
+          "description": "电力排放因子",
+          "nullable": true
+        },
+        {
+          "name": "window",
+          "type": "string",
+          "description": "停机窗口",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "site_id"
+      ],
+      "references": [],
+      "path": "data/sites.csv",
+      "row_count": 6,
+      "sha256": "68eebda3885aeae2c99a43ea0e7abdfe66a5d5b5c6ce435150cd01512c8ca1bc"
+    },
+    {
+      "name": "applications",
+      "description": "包括未核实的设备总体与申报机会资料。",
+      "columns": [
+        {
+          "name": "device_id",
+          "type": "string",
+          "description": "设备",
+          "nullable": true
+        },
+        {
+          "name": "site_id",
+          "type": "string",
+          "description": "厂区",
+          "nullable": true
+        },
+        {
+          "name": "technology",
+          "type": "string",
+          "description": "技术",
+          "nullable": true
+        },
+        {
+          "name": "service_units",
+          "type": "number",
+          "description": "服务规模",
+          "nullable": true
+        },
+        {
+          "name": "reported_saving",
+          "type": "number",
+          "description": "申报节约",
+          "nullable": true
+        },
+        {
+          "name": "selection_reason",
+          "type": "string",
+          "description": "核实原因",
+          "nullable": true
+        },
+        {
+          "name": "selection_probability",
+          "type": "number",
+          "description": "抽中概率",
+          "nullable": true
+        },
+        {
+          "name": "verified",
+          "type": "boolean",
+          "description": "已核实",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "device_id"
+      ],
+      "references": [
+        {
+          "column": "site_id",
+          "target_table": "sites",
+          "target_column": "site_id"
+        }
+      ],
+      "path": "data/applications.csv",
+      "row_count": 48,
+      "sha256": "0f0aa9647e546501f031a8aae7dea702e7549beffa3b659c007a5d0c7b65874d"
+    },
+    {
+      "name": "verification",
+      "description": "核实结果按可知时点进入，未核实设备不伪造结果。",
+      "columns": [
+        {
+          "name": "verification_id",
+          "type": "string",
+          "description": "核实",
+          "nullable": true
+        },
+        {
+          "name": "device_id",
+          "type": "string",
+          "description": "设备",
+          "nullable": true
+        },
+        {
+          "name": "actual_load",
+          "type": "number",
+          "description": "负荷",
+          "nullable": true
+        },
+        {
+          "name": "steam_source",
+          "type": "string",
+          "description": "实际汽源",
+          "nullable": true
+        },
+        {
+          "name": "meter_error",
+          "type": "number",
+          "description": "测量误差",
+          "nullable": true
+        },
+        {
+          "name": "available_at",
+          "type": "datetime",
+          "description": "可知",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "verification_id"
+      ],
+      "references": [
+        {
+          "column": "device_id",
+          "target_table": "applications",
+          "target_column": "device_id"
+        }
+      ],
+      "path": "data/verification.csv",
+      "row_count": 36,
+      "sha256": "9f40016a7d61fe2d42d811b8f70e97bbee5ee47196a5dcfa2523e5eb40cd8fc9"
+    },
+    {
+      "name": "stages",
+      "description": "申请分期与前提，change 指该前提完工后的汽源变化。",
+      "columns": [
+        {
+          "name": "stage_id",
+          "type": "string",
+          "description": "阶段",
+          "nullable": true
+        },
+        {
+          "name": "site_id",
+          "type": "string",
+          "description": "厂区",
+          "nullable": true
+        },
+        {
+          "name": "device_ids",
+          "type": "string",
+          "description": "设备编号分号分隔",
+          "nullable": true
+        },
+        {
+          "name": "predecessors",
+          "type": "string",
+          "description": "前提阶段",
+          "nullable": true
+        },
+        {
+          "name": "cost",
+          "type": "number",
+          "description": "费用",
+          "nullable": true
+        },
+        {
+          "name": "window",
+          "type": "string",
+          "description": "窗口",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "proposal或started",
+          "nullable": true
+        },
+        {
+          "name": "boundary_change",
+          "type": "string",
+          "description": "完成后的汽源变化",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "stage_id"
+      ],
+      "references": [
+        {
+          "column": "site_id",
+          "target_table": "sites",
+          "target_column": "site_id"
+        }
+      ],
+      "path": "data/stages.csv",
+      "row_count": 12,
+      "sha256": "5bd1b233818f72882f99024ee919199de11aefe3ae44955d2b159eaeb1c507d0"
+    },
+    {
+      "name": "windows",
+      "description": "验证和工程共同占用的停机窗口。slot 是本周期剩余名额。",
+      "columns": [
+        {
+          "name": "window",
+          "type": "string",
+          "description": "窗口",
+          "nullable": true
+        },
+        {
+          "name": "slots",
+          "type": "integer",
+          "description": "剩余名额",
+          "nullable": true
+        },
+        {
+          "name": "delay_cost",
+          "type": "number",
+          "description": "延后一期损失",
+          "nullable": true
+        },
+        {
+          "name": "budget",
+          "type": "number",
+          "description": "可用预算",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "window"
+      ],
+      "references": [],
+      "path": "data/windows.csv",
+      "row_count": 3,
+      "sha256": "10b65bb73ff65b33943dbdf6e724f150542a18dd99d092cbf53ea4f117dfd2c9"
+    },
+    {
+      "name": "local_options",
+      "description": "可选择的本地验证，group 相同可以共同减少一类证据缺口但不是独立样本。",
+      "columns": [
+        {
+          "name": "option_id",
+          "type": "string",
+          "description": "核实选项",
+          "nullable": true
+        },
+        {
+          "name": "site_id",
+          "type": "string",
+          "description": "厂区",
+          "nullable": true
+        },
+        {
+          "name": "device_id",
+          "type": "string",
+          "description": "设备",
+          "nullable": true
+        },
+        {
+          "name": "window",
+          "type": "string",
+          "description": "窗口",
+          "nullable": true
+        },
+        {
+          "name": "slot_usage",
+          "type": "integer",
+          "description": "窗口占用",
+          "nullable": true
+        },
+        {
+          "name": "cost",
+          "type": "number",
+          "description": "成本",
+          "nullable": true
+        },
+        {
+          "name": "precision",
+          "type": "number",
+          "description": "预期误差",
+          "nullable": true
+        },
+        {
+          "name": "group",
+          "type": "string",
+          "description": "共同来源",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "option_id"
+      ],
+      "references": [
+        {
+          "column": "device_id",
+          "target_table": "applications",
+          "target_column": "device_id"
+        }
+      ],
+      "path": "data/local_options.csv",
+      "row_count": 7,
+      "sha256": "0950911b70ec306feb1859d62efd2e458ce08fcc87a4129d315b35a80d6fed49"
+    },
+    {
+      "name": "incoming_local",
+      "description": "选择后陆续到达的资料，不能用于之前的决策。",
+      "columns": [
+        {
+          "name": "result_id",
+          "type": "string",
+          "description": "结果",
+          "nullable": true
+        },
+        {
+          "name": "device_id",
+          "type": "string",
+          "description": "设备",
+          "nullable": true
+        },
+        {
+          "name": "actual_source",
+          "type": "string",
+          "description": "本地汽源",
+          "nullable": true
+        },
+        {
+          "name": "actual_load",
+          "type": "number",
+          "description": "本地负荷",
+          "nullable": true
+        },
+        {
+          "name": "effect",
+          "type": "number",
+          "description": "本地估计效果",
+          "nullable": true
+        },
+        {
+          "name": "stderr",
+          "type": "number",
+          "description": "尺度",
+          "nullable": true
+        },
+        {
+          "name": "available_at",
+          "type": "datetime",
+          "description": "可知",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "result_id"
+      ],
+      "references": [
+        {
+          "column": "device_id",
+          "target_table": "applications",
+          "target_column": "device_id"
+        }
+      ],
+      "path": "data/incoming_local.csv",
+      "row_count": 2,
+      "sha256": "c3b198f94f0c5b06b747c8f0d2d750ac171c3f51a970251fc2a6caa7791ef8cd"
+    }
+  ]
+}

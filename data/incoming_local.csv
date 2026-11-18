@@ -1,0 +1,3 @@
+result_id,device_id,actual_source,actual_load,effect,stderr,available_at
+N1,D32,external,0.93,-3,4,2025-04-26T08:00:00+08:00
+N2,D40,external,0.86,-2,3,2025-04-28T08:00:00+08:00

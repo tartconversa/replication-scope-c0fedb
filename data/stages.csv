@@ -1,0 +1,13 @@
+stage_id,site_id,device_ids,predecessors,cost,window,status,boundary_change
+A1,S1,D1;D2;D3;D4,,210000,W1,started,boiler
+A2,S2,D9;D10;D11;D12,,220000,W1,proposal,
+A3,S3,D17;D18;D19;D20,,230000,W2,proposal,boiler
+A4,S4,D25;D26;D27;D28,,240000,W2,proposal,
+A5,S5,D33;D34;D35;D36,,250000,W3,proposal,boiler
+A6,S6,D41;D42;D43;D44,,260000,W3,proposal,
+B1,S1,D5;D6;D7;D8,A1,160000,W1,proposal,
+B2,S2,D13;D14;D15;D16,A2,170000,W1,proposal,
+B3,S3,D21;D22;D23;D24,A3,180000,W2,proposal,
+B4,S4,D29;D30;D31;D32,A4,190000,W2,proposal,
+B5,S5,D37;D38;D39;D40,A5,200000,W3,proposal,
+B6,S6,D45;D46;D47;D48,A6,210000,W3,proposal,
